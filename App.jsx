@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 function App() {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
+  const [marks,setmarks]=useState("")
   const [submit, setSubmit] = useState("");
-  const [submitted, setSubmitted] = useState("");
+ 
 
   const handleNameInput = (e) => {
     setName(e.target.value);
@@ -14,13 +15,17 @@ function App() {
     setCourse(e.target.value);
   };
   console.log({course})
+    const handlemarksInput = (e) => {
+    setCourse(e.target.value);
+  };
+  console.log({marks})
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("User submitted successfully:", { name, course });
+    console.log("User submitted successfully:", { name,course });
 
-    setSubmit(name);        // stores submitted name like as course also
-    setSubmitted(course);   
+    setSubmit({name,course});        // stores submitted name like as course also
+     
 
     setName("");            
     setCourse("");          // clears input after submited so ("")
@@ -42,11 +47,17 @@ function App() {
           value={course}
           onChange={handleCourseInput}
         />
+         <input 
+          type="text"
+          placeholder="Enter course"
+          value={marks}
+          onChange={handlemarksInput}
+        />
         <button type="submit">Click me</button>
       </form>
 
-      <h3>{submit}</h3>
-      <h3>{submitted}</h3>
+      <h3>{submit.name}{submit.course} {submit.marks}</h3>
+      
     </div>
   );
 }
