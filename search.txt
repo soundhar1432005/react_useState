@@ -1,0 +1,30 @@
+import { useState } from "react";
+export default function App() {
+  const productlist=["Apple","Banana","Orange"];
+  const [product,setproduct]=useState(productlist)
+   const [search,setSearch]=useState("")
+
+   const handleSubmit =(e)=>{
+     e.preventDefault();
+     const searchfilter= product.filter((item)=>{
+        return item.toLowerCase().includes(search.toLowerCase())
+      })
+      setproduct(searchfilter)
+   }
+
+  return (
+    <>
+         <form onSubmit={handleSubmit}>
+         <input type="text" placeholder="search"
+         onChange={(e)=>{setSearch(e.target.value)}}
+         />
+         <button>Submit</button>
+                <ul>
+                    {product.map((item, i) => (
+                        <div key={i}>{item}</div>
+                    ))}
+                </ul>
+          </form> 
+    </>
+  );
+}
